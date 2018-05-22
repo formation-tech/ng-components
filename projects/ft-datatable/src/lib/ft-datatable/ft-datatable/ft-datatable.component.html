@@ -1,0 +1,17 @@
+<ng-template *ngIf="filtersTemplate; else defaultFiltersTemplate"
+             [ngTemplateOutlet]="filtersTemplate"
+             [ngTemplateOutletContext]="filtersTemplateContext">
+</ng-template>
+
+<ng-template #defaultFiltersTemplate>
+  <ft-datatable-filters [items]="items" (filtersChange)="updateFilteredItems($event)"></ft-datatable-filters>
+</ng-template>
+
+<ng-template *ngIf="tableTemplate; else defaultTableTemplate"
+             [ngTemplateOutlet]="tableTemplate"
+             [ngTemplateOutletContext]="tableTemplateContext">
+</ng-template>
+
+<ng-template #defaultTableTemplate>
+  <ft-datatable-table [items]="filteredItems"></ft-datatable-table>
+</ng-template>

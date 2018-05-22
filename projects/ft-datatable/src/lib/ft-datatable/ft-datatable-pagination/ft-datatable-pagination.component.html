@@ -1,0 +1,27 @@
+<ul class="pagination pagination-sm mb-0" *ngIf="pages.length > 1">
+  <li class="page-item" [ngClass]="{disabled: page === 1}">
+    <a class="page-link" (click)="setPage(1)">
+      <i class="full-backward"></i>
+    </a>
+  </li>
+  <li class="page-item" [ngClass]="{disabled: page === 1}">
+    <a class="page-link" (click)="setPage(page - 1)">
+      <i class="step-backward"></i>
+    </a>
+  </li>
+
+  <li class="page-item" *ngFor="let p of filteredPages" [ngClass]="{active: page === p}">
+    <a class="page-link" (click)="setPage(p)">{{p}}</a>
+  </li>
+
+  <li class="page-item" [ngClass]="{disabled: page === pages.length}">
+    <a class="page-link" (click)="setPage(page + 1)">
+      <i class="step-forward"></i>
+    </a>
+  </li>
+  <li class="page-item" [ngClass]="{disabled: page === pages.length}">
+    <a class="page-link" (click)="setPage(pages.length)">
+      <i class="full-forward"></i>
+    </a>
+  </li>
+</ul>

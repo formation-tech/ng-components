@@ -1,0 +1,34 @@
+
+<div class="container-fluid mt-3">
+  <h2>Custom Datatable</h2>
+  <ft-datatable [items]="companies" #ftDatatable="ftDatatable">
+    <ng-template let-items="items" let-updateFilteredItems="updateFilteredItems" #filtersTemplate>
+      <ft-datatable-filters [items]="items"
+                            [keys]="['name', 'crunchbase_url', 'homepage_url', 'category_code', 'founded_year']"
+                            [titles]="{name: 'Name', crunchbase_url: 'Crunchbase URL', homepage_url: 'Homepage URL', category_code: 'Category Code', founded_year: 'Founded Year'}"
+                            (filtersChange)="ftDatatable.updateFilteredItems($event)">
+      </ft-datatable-filters>
+    </ng-template>
+    <ng-template let-filteredItems="filteredItems" #tableTemplate>
+      <ft-datatable-table [items]="filteredItems" sortKey="name">
+        <ft-datatable-column title="Name" key="name"></ft-datatable-column>
+        <ft-datatable-column title="Crunchbase URL" key="crunchbase_url">
+          <ng-template let-item="item" ftDatatableCellTemplate>
+            <a [href]="item.crunchbase_url">{{item.crunchbase_url}}</a>
+          </ng-template>
+        </ft-datatable-column>
+        <ft-datatable-column title="Homepage URL" key="homepage_url">
+          <ng-template let-item="item" ftDatatableCellTemplate>
+            <a [href]="item.homepage_url">{{item.homepage_url}}</a>
+          </ng-template>
+        </ft-datatable-column>
+        <ft-datatable-column title="Category" key="category_code">
+          <ng-template let-item="item" ftDatatableCellTemplate>
+            <div class="badge badge-primary">{{item.category_code}}</div>
+          </ng-template>
+        </ft-datatable-column>
+        <ft-datatable-column title="Founded" key="founded_year"></ft-datatable-column>
+      </ft-datatable-table>
+    </ng-template>
+  </ft-datatable>
+</div>

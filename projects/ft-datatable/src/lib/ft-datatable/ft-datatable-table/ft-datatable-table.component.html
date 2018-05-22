@@ -1,0 +1,55 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+      <th *ngFor="let key of keys" (click)="order(key)" [ngClass]="{sortable: columns[key].sortable}">
+        <ng-template *ngIf="columns[key].getCellTemplate && columns[key].getHeaderCellTemplate(); else defaultHeaderCellTemplate"
+                     [ngTemplateOutlet]="columns[key].getHeaderCellTemplate()"
+                     [ngTemplateOutletContext]="{key: key, order: order}">
+        </ng-template>
+        <ng-template #defaultHeaderCellTemplate>
+          <div class="d-flex">
+            {{columns[key].title || key}}
+            <ng-container *ngIf="columns[key].sortable">
+              <i class="sort-down ml-auto my-auto" *ngIf="sortKey === key && sortAsc"></i>
+              <i class="sort-up ml-auto my-auto" *ngIf="sortKey === key && !sortAsc"></i>
+            </ng-container>
+          </div>
+        </ng-template>
+      </th>
+    </tr>
+    <tr *ngIf="subHeaderTemplate">
+      <ng-template [ngTemplateOutlet]="subHeaderTemplate"
+                   [ngTemplateOutletContext]="{columns: columns, keys: keys}">
+      </ng-template>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of paginatedItems; let i = index">
+      <td *ngFor="let key of keys">
+        <ng-template *ngIf="columns[key].getCellTemplate && columns[key].getCellTemplate(i); else defaultCellTemplate"
+                     [ngTemplateOutlet]="columns[key].getCellTemplate(i)"
+                     [ngTemplateOutletContext]="{item: item, index: i}">
+        </ng-template>
+        <ng-template #defaultCellTemplate>
+          {{item[key]}}
+        </ng-template>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td [attr.colspan]="keys.length">
+        <nav class="d-flex">
+          <div class="my-auto">{{paginatedItems.length}} / {{items.length}}</div>
+          <ft-datatable-pagination class="ml-auto my-auto"
+                                   [page]="page"
+                                   [count]="items.length"
+                                   (pageChange)="setPage($event)"
+          ></ft-datatable-pagination>
+        </nav>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

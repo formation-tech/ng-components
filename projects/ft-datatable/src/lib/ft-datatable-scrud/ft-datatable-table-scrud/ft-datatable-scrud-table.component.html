@@ -1,0 +1,48 @@
+<ft-datatable-table [items]="items">
+  <ng-template ftDatatableSubHeaderTemplate *ngIf="action.type === ActionTypes.create">
+    <td></td>
+    <td>
+      <input class="form-control form-control-sm" (input)="action.item.name = $event.target.value">
+    </td>
+    <td>
+      <input class="form-control form-control-sm" (input)="action.item.username = $event.target.value">
+    </td>
+    <td>
+      <input class="form-control form-control-sm" (input)="action.item.email = $event.target.value">
+    </td>
+    <td>
+      <a (click)="confirm()" tabindex="-1">Confirm</a>
+      <a (click)="cancel()" tabindex="-1">Cancel</a>
+    </td>
+  </ng-template>
+  <ft-datatable-scrud-column
+    *ngFor="let key of keys"
+    [key]="key" [title]="columns[key].title"
+    [indexEditing]="(action.type === ActionTypes.update) ? action.index : null"
+  >
+    <ng-template ftDatatableCellTemplate let-item="item">
+      {{item[key]}}
+    </ng-template>
+    <ng-template ftDatatableCellEditTemplate>
+      <input type="text" [value]="action.item[key]" (input)="action.item[key] = $event.target.value">
+    </ng-template>
+  </ft-datatable-scrud-column>
+  <ft-datatable-column [sortable]="false">
+    <ng-template ftDatatableHeaderCellTemplate>
+      <div class="d-flex">
+        <span class="mr-1">Actions</span>
+        <button class="btn btn-primary btn-xs ml-auto" (click)="create()">+</button>
+      </div>
+    </ng-template>
+    <ng-template let-item="item" let-index="index" ftDatatableCellTemplate>
+      <ng-container *ngIf="action.index !== index">
+        <a *ngIf="canEdit" (click)="edit(item, index)" tabindex="-1">Edit</a>
+        <a *ngIf="canDelete" (click)="delete(item, index)" tabindex="-1">Delete</a>
+      </ng-container>
+      <ng-container *ngIf="action.index === index">
+        <a (click)="confirm()" tabindex="-1">Confirm</a>
+        <a (click)="cancel()" tabindex="-1">Cancel</a>
+      </ng-container>
+    </ng-template>
+  </ft-datatable-column>
+</ft-datatable-table>

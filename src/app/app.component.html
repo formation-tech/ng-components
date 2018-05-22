@@ -1,0 +1,56 @@
+
+<!--<div class="container mt-3">-->
+  <!--<h2>Service https://jsonplaceholder.typicode.com/users</h2>-->
+  <!--<ft-datatable [service]="userService"></ft-datatable>-->
+<!--</div>-->
+
+
+<!--<div class="container mt-3">-->
+  <!--<h2>Service SCRUD V1</h2>-->
+  <!--<ft-datatable [service]="crunchbaseService">-->
+    <!--<ng-template let-filteredItems="filteredItems" #tableTemplate>-->
+      <!--<ft-datatable-table [items]="filteredItems" sortKey="name">-->
+        <!--<ft-datatable-column title="Name" key="name"></ft-datatable-column>-->
+        <!--<ft-datatable-column title="Homepage URL" key="homepage_url">-->
+          <!--<ng-template let-item="item">-->
+            <!--<a [href]="item.homepage_url">{{item.homepage_url}}</a>-->
+          <!--</ng-template>-->
+        <!--</ft-datatable-column>-->
+        <!--<ft-datatable-column title="Actions" key="id">-->
+          <!--<ng-template let-item="item">-->
+            <!--<a (click)="crunchbaseService.edit(item.id)">Edit</a>-->
+            <!--<a (click)="crunchbaseService.remove(item.id)">Delete</a>-->
+          <!--</ng-template>-->
+        <!--</ft-datatable-column>-->
+      <!--</ft-datatable-table>-->
+    <!--</ng-template>-->
+  <!--</ft-datatable>-->
+<!--</div>-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">@formation.tech/ft-datatable</a>
+  <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" [collapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown" dropdown>
+        <a class="nav-link dropdown-toggle" style="cursor: pointer" dropdownToggle role="button" aria-haspopup="true" aria-expanded="false">
+          Demos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *dropdownMenu>
+          <a class="dropdown-item" routerLink="/demos/basic-datatable">Basic Datatable</a>
+          <a class="dropdown-item" routerLink="/demos/basic-datatable-table-only">Basic Datatable (table only)</a>
+          <a class="dropdown-item" routerLink="/demos/custom-datatable">Custom Datatable</a>
+          <a class="dropdown-item" routerLink="/demos/basic-datatable-scrud-table-only">Basic Datatable SCRUD</a>
+          <a class="dropdown-item" routerLink="/demos/custom-datatable-scrud-table-only">Custom Datatable SCRUD (table only)</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<nav>
+
+</nav>
+
+<router-outlet></router-outlet>
