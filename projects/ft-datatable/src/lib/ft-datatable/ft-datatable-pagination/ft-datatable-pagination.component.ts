@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 @Component({
   selector: 'ft-datatable-pagination',
   templateUrl: './ft-datatable-pagination.component.html',
-  styleUrls: ['./ft-datatable-pagination.component.css'],
+  styleUrls: ['./ft-datatable-pagination.component.scss'],
 })
 export class FtDatatablePaginationComponent implements OnInit, OnChanges {
   @Input() page = 1;

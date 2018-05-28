@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -72,7 +72,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -117,11 +117,11 @@
         }
       }
     },
-    "ft-datatable": {
+    "@formation.tech/ft-datatable": {
       "root": "projects/ft-datatable",
       "sourceRoot": "projects/ft-datatable/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "ft",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

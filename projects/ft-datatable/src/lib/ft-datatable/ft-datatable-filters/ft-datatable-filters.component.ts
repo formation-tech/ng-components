@@ -15,7 +15,7 @@ import { objectContains } from '../search';
 @Component({
   selector: 'ft-datatable-filters',
   templateUrl: './ft-datatable-filters.component.html',
-  styleUrls: ['./ft-datatable-filters.component.css'],
+  styleUrls: ['./ft-datatable-filters.component.scss'],
 })
 export class FtDatatableFiltersComponent implements OnChanges, AfterContentChecked {
   @Input() items = [];
@@ -29,6 +29,8 @@ export class FtDatatableFiltersComponent implements OnChanges, AfterContentCheck
   filteredItems = [];
   open = false;
   filters: { key: string; needle: string }[] = [];
+
+  value = '';
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: any): void {

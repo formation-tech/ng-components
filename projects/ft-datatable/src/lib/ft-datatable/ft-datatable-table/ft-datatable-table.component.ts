@@ -9,14 +9,13 @@ import {
   QueryList,
   TemplateRef,
 } from '@angular/core';
-import { reverse, sortBy } from 'lodash-es';
 import { FtDatatableColumnDirective } from '../ft-datatable-column/ft-datatable-column.directive';
 import { FtDatatableSubHeaderTemplateDirective } from '../ft-datatable-sub-header-template/ft-datatable-sub-header-template.directive';
 
 @Component({
   selector: 'ft-datatable-table',
   templateUrl: './ft-datatable-table.component.html',
-  styleUrls: ['./ft-datatable-table.component.css'],
+  styleUrls: ['./ft-datatable-table.component.scss'],
 })
 export class FtDatatableTableComponent implements AfterContentChecked, OnChanges {
   @Input() keys: string[] = [];
@@ -25,7 +24,7 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
     [key: string]: {
       title?: string;
       getCellTemplate?: (index) => TemplateRef<any>;
-      getHeaderCellTemplate?: (index) => TemplateRef<any>;
+      getHeaderCellTemplate?: () => TemplateRef<any>;
       [key: string]: any;
     };
   } = {};
@@ -69,7 +68,9 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
     if (this.items && this.items.length && !this.columnDirectiveQueryList.length && !this.keys.length) {
       this.keys = Object.keys(this.items[0]);
       this.keys.forEach((key) => {
-        this.columns[key] = {};
+        this.columns[key] = {
+          sortable: true,
+        };
       });
       this.sortKey = this.keys[0];
 
@@ -101,7 +102,17 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
       this.sortKey = key;
       this.sortAsc = true;
     }
-    this.items = sortBy(this.items, key);
+    this.items = this.items.sort((a, b) => {
+      if (a[key] < b[key]) {
+        return -1;
+      }
+
+      if (a[key] > b[key]) {
+        return 1;
+      }
+
+      return 0;
+    }).slice();
 
     if (!this.sortAsc) {
       this.items.reverse();

@@ -16,7 +16,7 @@ export function objectContains(object: any, needle: string, onlyKeys = []) {
   const keys = Object.keys(object);
 
   for (const key of keys) {
-    if (onlyKeys.length && onlyKeys.indexOf(key) !== -1) {
+    if (onlyKeys.length && onlyKeys.indexOf(key) === -1) {
       continue;
     }
 

@@ -18,8 +18,9 @@ import { ActionTypes } from './action-types.enum';
 @Component({
   selector: 'ft-datatable-scrud-table',
   templateUrl: './ft-datatable-scrud-table.component.html',
-  styleUrls: ['./ft-datatable-scrud-table.component.css'],
+  styleUrls: ['./ft-datatable-scrud-table.component.scss'],
   exportAs: 'ftDatatableScrudTable',
+  preserveWhitespaces: true,
 })
 export class FtDatatableScrudTableComponent extends FtDatatableTableComponent implements OnInit, AfterViewChecked {
   @Input() service: Searchable<any> | any;

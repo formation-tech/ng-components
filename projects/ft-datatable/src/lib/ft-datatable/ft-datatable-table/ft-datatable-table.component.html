@@ -1,5 +1,5 @@
-<div class="table-responsive">
-  <table class="table table-bordered table-striped table-sm">
+<div class="table-container">
+  <table>
     <thead>
     <tr>
       <th *ngFor="let key of keys" (click)="order(key)" [ngClass]="{sortable: columns[key].sortable}">

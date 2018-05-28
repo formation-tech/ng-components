@@ -17,8 +17,8 @@
       "dom"
     ],
     "paths": {
-      "ft-datatable": [
-        "dist/ft-datatable"
+      "@formation.tech/ft-datatable": [
+        "dist/@formation.tech/ft-datatable"
       ]
     }
   }

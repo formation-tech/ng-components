@@ -1,14 +1,7 @@
-<ft-datatable-table [items]="items">
+  <ft-datatable-table [items]="items">
   <ng-template ftDatatableSubHeaderTemplate *ngIf="action.type === ActionTypes.create">
-    <td></td>
-    <td>
-      <input class="form-control form-control-sm" (input)="action.item.name = $event.target.value">
-    </td>
-    <td>
-      <input class="form-control form-control-sm" (input)="action.item.username = $event.target.value">
-    </td>
-    <td>
-      <input class="form-control form-control-sm" (input)="action.item.email = $event.target.value">
+    <td *ngFor="let key of keys">
+      <input class="form-control form-control-sm" (input)="action.item[key] = $event.target.value">
     </td>
     <td>
       <a (click)="confirm()" tabindex="-1">Confirm</a>
