@@ -12,8 +12,8 @@
           <div class="d-flex">
             {{columns[key].title || key}}
             <ng-container *ngIf="columns[key].sortable">
-              <i class="sort-down ml-auto my-auto" *ngIf="sortKey === key && sortAsc"></i>
-              <i class="sort-up ml-auto my-auto" *ngIf="sortKey === key && !sortAsc"></i>
+              <i class="sort-down ml-auto my-auto" *ngIf="sortKey === key && !sortAsc"></i>
+              <i class="sort-up ml-auto my-auto" *ngIf="sortKey === key && sortAsc"></i>
             </ng-container>
           </div>
         </ng-template>

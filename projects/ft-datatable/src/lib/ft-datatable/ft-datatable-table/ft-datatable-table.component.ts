@@ -61,6 +61,11 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
         this.columns[columnDirective.key].getCellTemplate = (index) => columnDirective.getCellTemplate(index);
         this.columns[columnDirective.key].getHeaderCellTemplate = () => columnDirective.getHeaderCellTemplate();
       });
+
+      if (!this.sortKey) {
+        this.sortKey = this.keys[0];
+      }
+
       return;
     }
 
@@ -72,7 +77,11 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
           sortable: true,
         };
       });
-      this.sortKey = this.keys[0];
+
+      if (!this.sortKey) {
+        this.sortKey = this.keys[0];
+      }
+
 
       return;
     }
@@ -118,5 +127,10 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
       this.items.reverse();
     }
     this.setPage(this.page);
+  }
+
+  refresh() {
+    this.sortAsc = !this.sortAsc;
+    this.order(this.sortKey);
   }
 }

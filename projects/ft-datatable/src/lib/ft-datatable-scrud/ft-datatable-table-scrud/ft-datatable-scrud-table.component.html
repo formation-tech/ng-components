@@ -1,4 +1,4 @@
-<ft-datatable-table [items]="items">
+<ft-datatable-table [items]="items" [sortKey]="sortKey" [sortAsc]="sortAsc">
   <ng-template ftDatatableSubHeaderTemplate *ngIf="action.type === ActionTypes.create">
     <td *ngFor="let key of keys">
       <input class="form-control form-control-sm" (input)="action.item[key] = $event.target.value">
@@ -24,12 +24,12 @@
     <ng-template ftDatatableHeaderCellTemplate>
       <div class="action-header">
         <span>Actions</span>
-        <button class="btn btn-primary btn-xs ml-auto" (click)="create()">+</button>
+        <button class="btn btn-primary btn-xs ml-auto" (click)="create()" *ngIf="canCreate">+</button>
       </div>
     </ng-template>
     <ng-template let-item="item" let-index="index" ftDatatableCellTemplate>
       <ng-container *ngIf="action.index !== index">
-        <a *ngIf="canEdit" (click)="edit(item, index)" tabindex="-1">Edit</a>
+        <a *ngIf="canUpdate" (click)="edit(item, index)" tabindex="-1">Edit</a>
         <a *ngIf="canDelete" (click)="delete(item, index)" tabindex="-1">Delete</a>
       </ng-container>
       <ng-container *ngIf="action.index === index">

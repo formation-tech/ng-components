@@ -26,7 +26,8 @@ export class FtDatatableScrudTableComponent extends FtDatatableTableComponent im
   @Input() service: Searchable<any> | any;
   @ContentChildren(FtDatatableScrudColumnDirective) contentColumnDirective: QueryList<FtDatatableScrudColumnDirective>;
   @ViewChildren(FtDatatableScrudColumnDirective) viewColumnDirective: QueryList<FtDatatableScrudColumnDirective>;
-  canEdit: boolean;
+  canCreate: boolean;
+  canUpdate: boolean;
   canDelete: boolean;
 
   @Output() postCreate = new EventEmitter<any>();
@@ -49,7 +50,8 @@ export class FtDatatableScrudTableComponent extends FtDatatableTableComponent im
     this.service.search().subscribe((items) => {
       this.items = items;
     });
-    this.canEdit = 'update' in Object.getPrototypeOf(this.service);
+    this.canCreate = 'create' in Object.getPrototypeOf(this.service);
+    this.canUpdate = 'update' in Object.getPrototypeOf(this.service);
     this.canDelete = 'delete' in Object.getPrototypeOf(this.service);
   }
 
@@ -93,16 +95,30 @@ export class FtDatatableScrudTableComponent extends FtDatatableTableComponent im
   confirm() {
     switch (this.action.type) {
       case ActionTypes.create:
-        this.service.create(this.action.item).subscribe((value) => this.postCreate.emit(value));
+        this.service.create(this.action.item).subscribe((value) => {
+          this.items.push(value);
+          this.refresh();
+          this.postCreate.emit(value);
+          this.cancel();
+        });
         break;
       case ActionTypes.update:
-        this.service.update(this.action.item).subscribe((value) => this.postUpdate.emit(value));
+        this.service.update(this.action.item).subscribe((value) => {
+          this.items[this.action.index] = value;
+          this.refresh();
+          this.postUpdate.emit(value);
+          this.cancel();
+        });
         break;
       case ActionTypes.delete:
-        this.service.delete(this.action.item).subscribe((value) => this.postDelete.emit(value));
+        this.service.delete(this.action.item).subscribe((value) => {
+          this.items.splice(this.action.index, 1);
+          this.refresh();
+          this.cancel();
+          this.postDelete.emit(value);
+        });
         break;
     }
-    this.cancel();
   }
 
   cancel() {
