@@ -1,7 +1,8 @@
 <div class="filters-command">
   <div class="input-group w-auto">
     <div class="input-group-prepend">
-      <button class="btn btn-secondary dropdown-toggle" #dropdownToggle type="button" aria-haspopup="true" [attr.aria-expanded]="!open" (click)="open = !open">
+      <button class="btn btn-secondary dropdown-toggle" #dropdownToggle type="button" aria-haspopup="true"
+              [attr.aria-expanded]="!open" (click)="open = !open">
         Add Filter
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" [ngClass]="{show: open}">

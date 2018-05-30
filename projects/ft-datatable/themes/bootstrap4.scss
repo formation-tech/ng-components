@@ -243,28 +243,28 @@ ft-datatable-filters {
       display: flex;
     }
 
-  .btn-outline-secondary {
-    color: #6c757d;
-    background-color: transparent;
-    background-image: none;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid #6c757d;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    border-radius: 0.2rem;
-    position: relative;
-    z-index: 2;
-    cursor: pointer;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
+    .btn-outline-secondary {
+      color: #6c757d;
+      background-color: transparent;
+      background-image: none;
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      border: 1px solid #6c757d;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      border-radius: 0.2rem;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
 
     .input-group-text {
       display: flex;

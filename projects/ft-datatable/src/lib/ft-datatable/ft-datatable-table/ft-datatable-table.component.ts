@@ -41,7 +41,7 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
   paginatedItems = [];
 
   @ContentChildren(FtDatatableColumnDirective) columnDirectiveQueryList: QueryList<FtDatatableColumnDirective>;
-  @ContentChild(FtDatatableSubHeaderTemplateDirective, { read: TemplateRef }) subHeaderTemplate: TemplateRef<any>;
+  @ContentChild(FtDatatableSubHeaderTemplateDirective, {read: TemplateRef}) subHeaderTemplate: TemplateRef<any>;
 
   constructor(protected cd: ChangeDetectorRef) {}
 

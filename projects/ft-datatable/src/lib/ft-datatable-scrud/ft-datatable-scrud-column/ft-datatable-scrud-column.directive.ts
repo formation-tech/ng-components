@@ -7,15 +7,15 @@ import { FtDatatableCellEditTemplateDirective } from '../ft-datatable-cell-edit-
   selector: '[ftDatatableScrudColumn], ft-datatable-scrud-column',
   providers: [
     FtDatatableColumnDirective,
-    { provide: FtDatatableColumnDirective, useExisting: FtDatatableScrudColumnDirective },
+    {provide: FtDatatableColumnDirective, useExisting: FtDatatableScrudColumnDirective},
   ],
 })
 export class FtDatatableScrudColumnDirective extends FtDatatableColumnDirective {
   @Input() indexEditing = null;
 
-  @ContentChild(FtDatatableCellTemplateDirective, { read: TemplateRef })
+  @ContentChild(FtDatatableCellTemplateDirective, {read: TemplateRef})
   readTemplate: TemplateRef<any>;
-  @ContentChild(FtDatatableCellEditTemplateDirective, { read: TemplateRef })
+  @ContentChild(FtDatatableCellEditTemplateDirective, {read: TemplateRef})
   editTemplate: TemplateRef<any>;
 
   constructor() {

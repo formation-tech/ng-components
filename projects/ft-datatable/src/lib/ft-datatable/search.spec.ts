@@ -42,24 +42,24 @@ describe('search functions', () => {
 
   describe('objectContains function', () => {
     it('should be true when value is present', () => {
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'Steve')).toBeTruthy();
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'STEVE')).toBeTruthy();
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'o')).toBeTruthy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'Steve')).toBeTruthy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'STEVE')).toBeTruthy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'o')).toBeTruthy();
       expect(
-        objectContains({ firstName: 'Steve', lastName: 'Jobs', company: { name: 'Apple' } }, 'Apple'),
+        objectContains({firstName: 'Steve', lastName: 'Jobs', company: {name: 'Apple'}}, 'Apple'),
       ).toBeTruthy();
     });
 
     it('should be false when value is not present', () => {
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'Bill')).toBeFalsy();
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'BILL')).toBeFalsy();
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'a')).toBeFalsy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'Bill')).toBeFalsy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'BILL')).toBeFalsy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'a')).toBeFalsy();
     });
 
     it('should look only in specified keys', () => {
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'Bill')).toBeFalsy();
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'BILL')).toBeFalsy();
-      expect(objectContains({ firstName: 'Steve', lastName: 'Jobs' }, 'a')).toBeFalsy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'Bill')).toBeFalsy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'BILL')).toBeFalsy();
+      expect(objectContains({firstName: 'Steve', lastName: 'Jobs'}, 'a')).toBeFalsy();
     });
   });
 
@@ -68,19 +68,19 @@ describe('search functions', () => {
       expect(arrayContains(['Steve', 'Bill'], 'Steve')).toBeTruthy();
       expect(arrayContains([['Steven', 'Paul'], ['William', 'Henry']], 'Steve')).toBeTruthy();
       expect(
-        arrayContains([{ firstName: 'Steve', lastName: 'Jobs' }, { firstName: 'Bill', lastName: 'Gates' }], 'Steve'),
+        arrayContains([{firstName: 'Steve', lastName: 'Jobs'}, {firstName: 'Bill', lastName: 'Gates'}], 'Steve'),
       ).toBeTruthy();
       expect(
-        arrayContains([{ firstName: 'Steve', lastName: 'Jobs' }, { firstName: 'Bill', lastName: 'Gates' }], 'STEVE'),
+        arrayContains([{firstName: 'Steve', lastName: 'Jobs'}, {firstName: 'Bill', lastName: 'Gates'}], 'STEVE'),
       ).toBeTruthy();
       expect(
-        arrayContains([{ firstName: 'Steve', lastName: 'Jobs' }, { firstName: 'Bill', lastName: 'Gates' }], 'Bill'),
+        arrayContains([{firstName: 'Steve', lastName: 'Jobs'}, {firstName: 'Bill', lastName: 'Gates'}], 'Bill'),
       ).toBeTruthy();
     });
 
     it('should be false when value is not present', () => {
       expect(
-        arrayContains([{ firstName: 'Steve', lastName: 'Jobs' }, { firstName: 'Bill', lastName: 'Gates' }], 'Elon'),
+        arrayContains([{firstName: 'Steve', lastName: 'Jobs'}, {firstName: 'Bill', lastName: 'Gates'}], 'Elon'),
       ).toBeFalsy();
     });
   });
@@ -90,20 +90,20 @@ describe('search functions', () => {
       expect(contains(['Steve', 'Bill'], 'Steve')).toBeTruthy();
       expect(contains([['Steven', 'Paul'], ['William', 'Henry']], 'Steve')).toBeTruthy();
       expect(
-        contains([{ firstName: 'Steve', lastName: 'Jobs' }, { firstName: 'Bill', lastName: 'Gates' }], 'Steve'),
+        contains([{firstName: 'Steve', lastName: 'Jobs'}, {firstName: 'Bill', lastName: 'Gates'}], 'Steve'),
       ).toBeTruthy();
       expect(
-        contains([{ firstName: 'Steve', lastName: 'Jobs' }, { firstName: 'Bill', lastName: 'Gates' }], 'STEVE'),
+        contains([{firstName: 'Steve', lastName: 'Jobs'}, {firstName: 'Bill', lastName: 'Gates'}], 'STEVE'),
       ).toBeTruthy();
       expect(
-        contains([{ firstName: 'Steve', lastName: 'Jobs' }, { firstName: 'Bill', lastName: 'Gates' }], 'Bill'),
+        contains([{firstName: 'Steve', lastName: 'Jobs'}, {firstName: 'Bill', lastName: 'Gates'}], 'Bill'),
       ).toBeTruthy();
-      expect(contains({ firstName: 'Steve', lastName: 'Jobs' }, 'Steve')).toBeTruthy();
+      expect(contains({firstName: 'Steve', lastName: 'Jobs'}, 'Steve')).toBeTruthy();
     });
 
     it('should be false when value is not present', () => {
       expect(
-        contains([{ firstName: 'Steve', lastName: 'Jobs' }, { firstName: 'Bill', lastName: 'Gates' }], 'Elon'),
+        contains([{firstName: 'Steve', lastName: 'Jobs'}, {firstName: 'Bill', lastName: 'Gates'}], 'Elon'),
       ).toBeFalsy();
       expect(contains(null, 'Elon')).toBeFalsy();
       expect(contains(undefined, 'Elon')).toBeFalsy();

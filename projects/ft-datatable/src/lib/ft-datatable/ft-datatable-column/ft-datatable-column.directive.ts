@@ -9,9 +9,9 @@ export class FtDatatableColumnDirective implements OnInit {
   @Input() key;
   @Input() title;
   @Input() sortable = true;
-  @ContentChild(FtDatatableCellTemplateDirective, { read: TemplateRef })
+  @ContentChild(FtDatatableCellTemplateDirective, {read: TemplateRef})
   cellTemplate: TemplateRef<any>;
-  @ContentChild(FtDatatableHeaderCellTemplateDirective, { read: TemplateRef })
+  @ContentChild(FtDatatableHeaderCellTemplateDirective, {read: TemplateRef})
   headerCellTemplate: TemplateRef<any>;
 
   constructor() {}

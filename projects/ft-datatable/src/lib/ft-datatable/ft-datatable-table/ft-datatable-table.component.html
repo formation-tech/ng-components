@@ -3,9 +3,10 @@
     <thead>
     <tr>
       <th *ngFor="let key of keys" (click)="order(key)" [ngClass]="{sortable: columns[key].sortable}">
-        <ng-template *ngIf="columns[key].getCellTemplate && columns[key].getHeaderCellTemplate(); else defaultHeaderCellTemplate"
-                     [ngTemplateOutlet]="columns[key].getHeaderCellTemplate()"
-                     [ngTemplateOutletContext]="{key: key, order: order}">
+        <ng-template
+          *ngIf="columns[key].getCellTemplate && columns[key].getHeaderCellTemplate(); else defaultHeaderCellTemplate"
+          [ngTemplateOutlet]="columns[key].getHeaderCellTemplate()"
+          [ngTemplateOutletContext]="{key: key, order: order}">
         </ng-template>
         <ng-template #defaultHeaderCellTemplate>
           <div class="d-flex">

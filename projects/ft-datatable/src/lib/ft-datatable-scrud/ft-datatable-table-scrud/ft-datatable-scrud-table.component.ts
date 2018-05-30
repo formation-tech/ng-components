@@ -80,7 +80,7 @@ export class FtDatatableScrudTableComponent extends FtDatatableTableComponent im
 
   edit(item, i) {
     this.action.type = ActionTypes.update;
-    this.action.item = { ...item };
+    this.action.item = {...item};
     this.action.index = i;
   }
 

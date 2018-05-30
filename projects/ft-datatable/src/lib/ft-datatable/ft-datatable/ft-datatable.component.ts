@@ -12,13 +12,13 @@ export class FtDatatableComponent implements OnInit, OnChanges {
   @Input() items = [];
   filteredItems = [];
 
-  @ContentChild('filtersTemplate', { read: TemplateRef })
+  @ContentChild('filtersTemplate', {read: TemplateRef})
   filtersTemplate: TemplateRef<any>;
-  filtersTemplateContext = { items: this.items };
+  filtersTemplateContext = {items: this.items};
 
-  @ContentChild('tableTemplate', { read: TemplateRef })
+  @ContentChild('tableTemplate', {read: TemplateRef})
   tableTemplate: TemplateRef<any>;
-  tableTemplateContext = { filteredItems: this.filteredItems };
+  tableTemplateContext = {filteredItems: this.filteredItems};
 
   constructor(private cd: ChangeDetectorRef) {}
 

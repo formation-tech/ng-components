@@ -75,7 +75,7 @@ export class FtDatatableFiltersComponent implements OnChanges, AfterContentCheck
   }
 
   addFilter(key, needle = '') {
-    this.filters.push({ key, needle });
+    this.filters.push({key, needle});
   }
 
   editFilter(key, needle) {
