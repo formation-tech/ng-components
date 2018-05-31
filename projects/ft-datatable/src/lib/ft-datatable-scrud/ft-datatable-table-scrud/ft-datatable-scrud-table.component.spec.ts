@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FtDatatableScrudTableComponent } from './ft-datatable-scrud-table.component';
 
-describe('FtDatatableScrudTableComponent', () => {
+describe('FtDatatableScrudComponent', () => {
   let component: FtDatatableScrudTableComponent;
   let fixture: ComponentFixture<FtDatatableScrudTableComponent>;
 

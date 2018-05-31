@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FtDatatableFiltersComponent } from './ft-datatable-filters.component';
+import { FtDatatableScrudComponent } from './ft-datatable-scrud.component';
 
-describe('FtDatatableScrudFiltersComponent', () => {
-  let component: FtDatatableFiltersComponent;
-  let fixture: ComponentFixture<FtDatatableFiltersComponent>;
+describe('FtDatatableScrudComponent', () => {
+  let component: FtDatatableScrudComponent;
+  let fixture: ComponentFixture<FtDatatableScrudComponent>;
 
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [FtDatatableFiltersComponent],
+        declarations: [FtDatatableScrudComponent],
       }).compileComponents();
     }),
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FtDatatableFiltersComponent);
+    fixture = TestBed.createComponent(FtDatatableScrudComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

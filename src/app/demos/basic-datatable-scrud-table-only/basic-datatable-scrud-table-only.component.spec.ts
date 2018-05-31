@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BasicDatatableScrudTableOnlyComponent } from './basic-datatable-scrud-table-only.component';
 
-describe('BasicDatatableScrudTableOnlyComponent', () => {
+describe('BasicDatatableScrudComponent', () => {
   let component: BasicDatatableScrudTableOnlyComponent;
   let fixture: ComponentFixture<BasicDatatableScrudTableOnlyComponent>;
 

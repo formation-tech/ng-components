@@ -12,15 +12,17 @@ import { DemosRoutingModule } from './demos-routing.module';
 import { CommentService } from './services/comment.service';
 import { CrunchbaseService } from './services/crunchbase.service';
 import { UserService } from './services/user.service';
+import { BasicDatatableScrudComponent } from './basic-datatable-scrud/basic-datatable-scrud.component';
 
 @NgModule({
   imports: [CommonModule, DemosRoutingModule, HttpClientModule, FtDatatableModule, FtDatatableScrudModule],
   declarations: [
     BasicDatatableComponent,
+    BasicDatatableScrudTableOnlyComponent,
+    BasicDatatableScrudComponent,
+    BasicDatatableTableOnlyComponent,
     CustomDatatableComponent,
     CustomDatatableScrudTableOnlyComponent,
-    BasicDatatableScrudTableOnlyComponent,
-    BasicDatatableTableOnlyComponent,
   ],
   providers: [CommentService, CrunchbaseService, UserService],
 })

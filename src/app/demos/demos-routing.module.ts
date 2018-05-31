@@ -5,6 +5,7 @@ import { BasicDatatableTableOnlyComponent } from './basic-datatable-table-only/b
 import { BasicDatatableComponent } from './basic-datatable/basic-datatable.component';
 import { CustomDatatableScrudTableOnlyComponent } from './custom-datatable-scrud-table-only/custom-datatable-scrud-table-only.component';
 import { CustomDatatableComponent } from './custom-datatable/custom-datatable.component';
+import { BasicDatatableScrudComponent } from './basic-datatable-scrud/basic-datatable-scrud.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'custom-datatable',
         component: CustomDatatableComponent,
+      },
+      {
+        path: 'basic-datatable-scrud',
+        component: BasicDatatableScrudComponent,
       },
       {
         path: 'basic-datatable-scrud-table-only',
