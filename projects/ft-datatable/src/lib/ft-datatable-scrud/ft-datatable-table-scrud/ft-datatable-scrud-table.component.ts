@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  EventEmitter,
+  EventEmitter, HostListener,
   Input,
   OnInit,
   Output,
@@ -14,6 +14,7 @@ import { FtDatatableTableComponent } from '../../ft-datatable/ft-datatable-table
 import { FtDatatableScrudColumnDirective } from '../ft-datatable-scrud-column/ft-datatable-scrud-column.directive';
 import { Searchable } from '../interfaces/searchable';
 import { ActionTypes } from './action-types.enum';
+import { log } from 'util';
 
 @Component({
   selector: 'ft-datatable-scrud-table',
@@ -34,6 +35,7 @@ export class FtDatatableScrudTableComponent extends FtDatatableTableComponent im
   @Output() postUpdate = new EventEmitter<any>();
   @Output() postDelete = new EventEmitter<any>();
 
+
   ActionTypes = ActionTypes;
 
   action = {
@@ -41,6 +43,20 @@ export class FtDatatableScrudTableComponent extends FtDatatableTableComponent im
     item: undefined,
     index: undefined,
   };
+
+  @HostListener('document:keyup', ['$event'])
+  onDocumentKeyup(event: any): void {
+    if (this.action.type) {
+      switch (event.keyCode) {
+        case 13: // ENTER
+          this.confirm();
+          break;
+        case 27: // CANCEL
+          this.cancel();
+          break;
+      }
+    }
+  }
 
   constructor(cd: ChangeDetectorRef) {
     super(cd);
@@ -64,13 +80,13 @@ export class FtDatatableScrudTableComponent extends FtDatatableTableComponent im
   }
 
   ngAfterViewChecked() {
-    this.viewColumnDirective.forEach((viewColumnDirective) => {
-      if (this.columns[viewColumnDirective.key].readTemplate) {
-        viewColumnDirective.readTemplate = this.columns[viewColumnDirective.key].readTemplate;
+    this.viewColumnDirective.forEach((vcd) => {
+      if (this.columns[vcd.key] && this.columns[vcd.key].readTemplate) {
+        vcd.readTemplate = this.columns[vcd.key].readTemplate;
       }
 
-      if (this.columns[viewColumnDirective.key].editTemplate) {
-        viewColumnDirective.editTemplate = this.columns[viewColumnDirective.key].editTemplate;
+      if (this.columns[vcd.key] && this.columns[vcd.key].editTemplate) {
+        vcd.editTemplate = this.columns[vcd.key].editTemplate;
       }
     });
   }
@@ -78,6 +94,7 @@ export class FtDatatableScrudTableComponent extends FtDatatableTableComponent im
   create() {
     this.action.type = ActionTypes.create;
     this.action.item = {};
+    this.action.index = null;
   }
 
   edit(item, i) {

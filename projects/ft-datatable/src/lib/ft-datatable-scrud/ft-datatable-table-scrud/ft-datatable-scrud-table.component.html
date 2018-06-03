@@ -1,11 +1,23 @@
 <ft-datatable-table [items]="items" [sortKey]="sortKey" [sortAsc]="sortAsc">
   <ng-template ftDatatableSubHeaderTemplate *ngIf="action.type === ActionTypes.create">
     <td *ngFor="let key of keys">
-      <input class="form-control form-control-sm" (input)="action.item[key] = $event.target.value">
+      <ng-template *ngIf="columns[key].getCellTemplate && columns[key].getCellTemplate(null); else defaultCreateCellTemplate"
+                   [ngTemplateOutlet]="columns[key].getCellTemplate(null)"
+                   [ngTemplateOutletContext]="{item: {}, index: null, action: action}">
+      </ng-template>
+      <ng-template #defaultCreateCellTemplate>
+        <input type="text" [(ngModel)]="action.item[key]">
+      </ng-template>
     </td>
     <td>
-      <a (click)="confirm()" tabindex="-1">Confirm</a>
-      <a (click)="cancel()" tabindex="-1">Cancel</a>
+      <a (click)="confirm()" tabindex="-1">
+        <i class="icon-confirm"></i>
+        <span class="label-confirm">Confirm</span>
+      </a>
+      <a (click)="cancel()" tabindex="-1">
+        <i class="icon-cancel"></i>
+        <span class="label-cancel">Cancel</span>
+      </a>
     </td>
   </ng-template>
   <ft-datatable-scrud-column
@@ -17,25 +29,37 @@
       {{item[key]}}
     </ng-template>
     <ng-template ftDatatableCellEditTemplate>
-      <input type="text" [value]="action.item[key]" (input)="action.item[key] = $event.target.value">
+      <input type="text" [(ngModel)]="action.item[key]">
     </ng-template>
   </ft-datatable-scrud-column>
-  <ft-datatable-column [sortable]="false">
+  <ft-datatable-scrud-column [sortable]="false" key="actions">
     <ng-template ftDatatableHeaderCellTemplate>
       <div class="action-header">
         <span>Actions</span>
-        <button class="btn btn-primary btn-xs ml-auto" (click)="create()" *ngIf="canCreate">+</button>
+        <button (click)="create()" *ngIf="canCreate">+</button>
       </div>
     </ng-template>
     <ng-template let-item="item" let-index="index" ftDatatableCellTemplate>
       <ng-container *ngIf="action.index !== index">
-        <a *ngIf="canUpdate" (click)="edit(item, index)" tabindex="-1">Edit</a>
-        <a *ngIf="canDelete" (click)="delete(item, index)" tabindex="-1">Delete</a>
+        <a *ngIf="canUpdate" (click)="edit(item, index)" tabindex="-1">
+          <i class="icon-edit"></i>
+          <span class="label-edit">Edit</span>
+        </a>
+        <a *ngIf="canDelete" (click)="delete(item, index)" tabindex="-1">
+          <i class="icon-delete"></i>
+          <span class="label-delete">Delete</span>
+        </a>
       </ng-container>
       <ng-container *ngIf="action.index === index">
-        <a (click)="confirm()" tabindex="-1">Confirm</a>
-        <a (click)="cancel()" tabindex="-1">Cancel</a>
+        <a (click)="confirm()" tabindex="-1">
+          <i class="icon-confirm"></i>
+          <span class="label-confirm">Confirm</span>
+        </a>
+        <a (click)="cancel()" tabindex="-1">
+          <i class="icon-cancel"></i>
+          <span class="label-cancel">Cancel</span>
+        </a>
       </ng-container>
     </ng-template>
-  </ft-datatable-column>
+  </ft-datatable-scrud-column>
 </ft-datatable-table>

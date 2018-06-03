@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ft-datatable": "rm -rf dist && ng build @formation.tech/ft-datatable && cp -R projects/ft-datatable/src/lib/themes dist/@formation.tech/ft-datatable"
   },
   "private": true,
   "dependencies": {

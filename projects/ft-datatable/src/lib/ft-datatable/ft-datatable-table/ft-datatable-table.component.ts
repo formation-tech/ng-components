@@ -18,7 +18,10 @@ import { FtDatatableSubHeaderTemplateDirective } from '../ft-datatable-sub-heade
   styleUrls: ['./ft-datatable-table.component.scss'],
 })
 export class FtDatatableTableComponent implements AfterContentChecked, OnChanges {
-  @Input() keys: string[] = [];
+  @Input()
+  get keys() {
+    return Object.keys(this.columns);
+  }
   @Input()
   columns: {
     [key: string]: {
@@ -48,20 +51,22 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
   ngAfterContentChecked() {
     // We get the keys, titles and templates from the directive
     if (this.columnDirectiveQueryList.length) {
-      this.keys = this.columnDirectiveQueryList.map((columnDirective) => columnDirective.key);
-      this.columnDirectiveQueryList.forEach((columnDirective) => {
-        this.columns[columnDirective.key] = this.columns[columnDirective.key] || {};
+      this.columns = {};
 
-        if (columnDirective.title) {
-          this.columns[columnDirective.key].title = columnDirective.title;
+      this.columnDirectiveQueryList.forEach((cd) => {
+        this.columns[cd.key] = this.columns[cd.key] || {};
+
+        if (cd.title) {
+          this.columns[cd.key].title = cd.title;
         }
 
-        this.columns[columnDirective.key].sortable = columnDirective.sortable;
+        this.columns[cd.key].sortable = cd.sortable;
 
-        this.columns[columnDirective.key].getCellTemplate = (index) => columnDirective.getCellTemplate(index);
-        this.columns[columnDirective.key].getHeaderCellTemplate = () => columnDirective.getHeaderCellTemplate();
+        this.columns[cd.key].getCellTemplate = (index) => cd.getCellTemplate(index);
+        this.columns[cd.key].getHeaderCellTemplate = () => cd.getHeaderCellTemplate();
       });
 
+      // Default sort (first col)
       if (!this.sortKey) {
         this.sortKey = this.keys[0];
       }
@@ -71,13 +76,14 @@ export class FtDatatableTableComponent implements AfterContentChecked, OnChanges
 
     // Fallback if no key specified
     if (this.items && this.items.length && !this.columnDirectiveQueryList.length && !this.keys.length) {
-      this.keys = Object.keys(this.items[0]);
-      this.keys.forEach((key) => {
+      const keys = Object.keys(this.items[0]);
+      keys.forEach((key) => {
         this.columns[key] = {
           sortable: true,
         };
       });
 
+      // Default sort (first col)
       if (!this.sortKey) {
         this.sortKey = this.keys[0];
       }

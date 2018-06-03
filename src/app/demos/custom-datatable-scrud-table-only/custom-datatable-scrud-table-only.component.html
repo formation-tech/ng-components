@@ -4,7 +4,7 @@
   <ft-datatable-scrud-table [service]="commentService" #scrudTable>
     <ft-datatable-scrud-column key="body" title="body">
       <ng-template ftDatatableCellEditTemplate let-item="item">
-        <textarea class="form-control" [value]="scrudTable.action.item.body" (input)="scrudTable.action.item.body = $event.target.value"></textarea>
+        <textarea class="form-control" [(ngModel)]="scrudTable.action.item.body"></textarea>
       </ng-template>
     </ft-datatable-scrud-column>
   </ft-datatable-scrud-table>
